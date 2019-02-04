@@ -24,7 +24,6 @@ const processMessage = async (timestamp) => {
   if (!message) {
     return;
   }
-  console.log('MESSAGE IS:', message);
   deleteAndPrintMessage(message, timestamp);
 };
 
@@ -40,19 +39,16 @@ const processUnreadRecords = async () => {
     return;
   }
 
-  console.log('unreadRecords', unreadRecords);
   for (const timestamp in unreadRecords) {
     if (!unreadRecords.hasOwnProperty(timestamp)) {
       continue;
     }
     const message = unreadRecords[timestamp];
     if (timestamp > getCurrentTimestamp()) {
-      console.log('FUTURE RECORD');
       setTimeout(() => {
         processMessage(timestamp, 0);
       }, getTimeout(timestamp));
     } else {
-      console.log('PAST RECORD');
       deleteAndPrintMessage(message, timestamp);
     }
   }
@@ -61,7 +57,6 @@ const processUnreadRecords = async () => {
 processUnreadRecords();
 redis.subscriber.subscribe(CHANNEL_NAME);
 redis.subscriber.on('message', function(channel, messageData) {
-  console.log('MESSAGE COME IN');
   const message = JSON.parse(messageData);
   const timeout = getTimeout(message.timestamp);
   setTimeout(() => {
@@ -73,14 +68,12 @@ redis.subscriber.on('message', function(channel, messageData) {
 app.post('/api/v1/echoAtTime', validator, async (request, response, next) => {
   const {timestamp, message} = request.body;
 
-  console.log('request.body', request.body, timestamp, message);
   try {
     await redis.hset(COLLECTION_NAME, timestamp, message);
     if (!isSet) {
       throw new errors.HttpStatusError(400, 'Insert error or you are trying to duplicate time.');
     }
     const messageData = JSON.stringify({timestamp, message});
-    console.log('PUB', messageData);
     redis.publisher.publish(CHANNEL_NAME, messageData);
     response.status(201).json({
       ok: true,
@@ -93,7 +86,7 @@ app.post('/api/v1/echoAtTime', validator, async (request, response, next) => {
 
 app.use((error, req, res, next) => {
   console.log('error', error);
-  res.status(400);
+  res.status(error.status);
   res.json({
     ok: false,
     error: error.message,
