@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/with-one-wing/node-redis.git"
+    "url": "git+https://github.com/with-one-wing/node-redis-task.git"
   },
   "keywords": [
     "node",
@@ -19,9 +19,9 @@
   "author": "Viktor Voitenko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/with-one-wing/node-redis/issues"
+    "url": "https://github.com/with-one-wing/node-redis-task/issues"
   },
-  "homepage": "https://github.com/with-one-wing/node-redis#readme",
+  "homepage": "https://github.com/with-one-wing/node-redis-task/blob/master/README.md",
   "dependencies": {
     "common-errors": "^1.0.5",
     "cors": "^2.8.5",
