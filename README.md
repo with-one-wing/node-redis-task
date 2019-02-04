@@ -13,11 +13,13 @@ I implemented logic like described in p 4. "Notices", but I can re-implement in 
 -docker to spin up architecture.
 -express
 -redis
--redis pub/sub *please look at Notices, point 3
+-redis pub/sub 
+*please look at Notices, point 3
 
 2. Launch:
 
-2.1 npm i # because we are using volumes, so our folder (inc. node_modules) will be mounted to container,  if I would use production mode I would move this task into the Docker.
+2.1 npm i # because we are using volumes, so our folder (inc. node_modules) will be mounted to container,  
+if I would use production mode I would move this task into the Docker.
 
 2.2 docker-compose up
 
