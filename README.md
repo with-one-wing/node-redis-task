@@ -1,21 +1,23 @@
 **NODE-REDIS ECHO Server for Moon Active Technical task.**
 
-Hi,
+Hi everybody!
 
 **Covering words:**
 
-Because I didn't quite understand logic of "printing message behind the load balancer" but wanted to do task over the weekend,
-I implemented logic like described in p 4. "Notices", but I can re-implement in absolutely any approach you want.
+Because I didn't quite understand logic of "printing message behind the load balancer" but wanted to finish task over the weekend,
+I implemented logic like described in "Notices", but I can re-implement in absolutely any approach you want. Docker-compose used + load balancer implemented - for test purposes, it didn't take to much time.
+
 
 
 **Used tools:**
 
--node 10
--pm2
--docker to spin up architecture.
--express
--redis
--redis pub/sub 
+- node 10
+- pm2
+- express
+- redis
+- redis pub/sub 
+- docker to spin up architecture.
+- nginx for load balancer
 *please look at Notices, point 3
 
 **Launch**
