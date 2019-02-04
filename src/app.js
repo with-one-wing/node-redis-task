@@ -35,7 +35,6 @@ const deleteAndPrintMessage = (message, timestamp) => {
 const processUnreadRecords = async () => {
   const unreadRecords = await redis.hgetall(COLLECTION_NAME);
   if (!unreadRecords) {
-    console.log('NOT UNREAD RECORDS');
     return;
   }
 
@@ -70,9 +69,6 @@ app.post('/api/v1/echoAtTime', validator, async (request, response, next) => {
 
   try {
     await redis.hset(COLLECTION_NAME, timestamp, message);
-    if (!isSet) {
-      throw new errors.HttpStatusError(400, 'Insert error or you are trying to duplicate time.');
-    }
     const messageData = JSON.stringify({timestamp, message});
     redis.publisher.publish(CHANNEL_NAME, messageData);
     response.status(201).json({
