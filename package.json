@@ -1,0 +1,39 @@
+{
+  "name": "node-redis",
+  "version": "1.0.0",
+  "description": "MoonActive team technical task",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/with-one-wing/node-redis.git"
+  },
+  "keywords": [
+    "node",
+    "redis"
+  ],
+  "author": "Viktor Voitenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/with-one-wing/node-redis/issues"
+  },
+  "homepage": "https://github.com/with-one-wing/node-redis#readme",
+  "dependencies": {
+    "common-errors": "^1.0.5",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "redis": "^2.8.0",
+    "pm2": "^3.2.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-google": "^0.12.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
+  }
+}

@@ -1,0 +1,50 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    container_name: cache
+    expose:
+      - 6379
+    networks:
+      - node-redis
+  server1:
+    build: ./
+    volumes:
+      - ./:/var/www/app
+    ports:
+      - 3005:3005
+    networks:
+      - node-redis
+    environment:
+      - REDIS_URL=redis://cache
+      - PORT=3005
+      - SERVER_ID=server1
+    command: ["pm2-dev", "pm2.yml"]
+  server2:
+    build: ./
+    volumes:
+      - ./:/var/www/app
+    ports:
+      - 3006:3006
+    networks:
+      - node-redis
+    environment:
+      - REDIS_URL=redis://cache
+      - PORT=3006
+      - SERVER_ID=server2
+    command: ["pm2-dev", "pm2.yml"]
+
+  load_balancer:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - node-redis
+    depends_on:
+      - server1
+      - server2
+
+networks:
+  node-redis:

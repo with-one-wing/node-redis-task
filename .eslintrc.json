@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": "google",
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ],
+    "new-cap": [
+      0,
+      {
+        "capIsNewExceptions": [
+          "dataTypes.*"
+        ]
+      }
+    ]
+  }
+}

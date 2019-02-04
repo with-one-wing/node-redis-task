@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  description: "Moon Active"
+  version: "1.0.0"
+  title: "Moon Active"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "viktor.voitenko@gmail.com"
+host: "localhost:8080"
+basePath: "/api/v1"
+tags:
+  - name: "Echo At Time"
+    description: "Echo to console at the specific time"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+schemes:
+  - "http"
+paths:
+  /echoAtTime:
+    post:
+      tags:
+        - "Echo At Time"
+      summary: "Echo to server console at specific time"
+      description: ""
+      operationId: "echoAtTime"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User object that needs to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/Echo"
+      responses:
+        400:
+          description: "Timestamp is invalid"
+definitions:
+  Echo:
+    type: "object"
+    required:
+      - "timestamp"
+      - "message"
+    properties:
+      timestamp:
+        type: "integer"
+        format: "int64"
+        example: 1549217953
+      message:
+        type: "string"
+        example: "Hello, World!"
+  ApiResponse:
+    type: "object"
+    properties:
+      ok:
+        type: "boolean"
+      error:
+        type: "string"
