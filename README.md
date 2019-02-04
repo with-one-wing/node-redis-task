@@ -28,7 +28,7 @@ if I would use production mode I would move this task into the Docker.
 http://localhost:8080/public/swagger-ui.html/
 
 
-#4. Notices:
+4. Notices:
 
 1. Used HASH like storage type, but I aware that LIST also actually can be used.
 2. Because I didn't quite understand "logic of printing message" I implemented like this: 
